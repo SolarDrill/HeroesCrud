@@ -1,99 +1,12 @@
-import express, { Request, Response } from 'express';
-
-const app = express();
+import express from 'express';
+import { heroeRoute } from './heroe/routes';
 
 const port = 3000;
+const app = express();
 
 app.use(express.json());
 
-interface Heroe {
-    id: Number,
-    nombre: String,
-    alte: String
-}
-
-let _id = 0;
-const heroes: Heroe[] = [];
-
-app.get('/heroe', (req: Request, res: Response) => {
-    res.json(heroes);
-});
-
-app.get('/heroe/:alte', (req: Request, res: Response) => {
-    const alte = req.params.alte;
-
-    const heroe = heroes.find((hero: Heroe) => hero.alte.toLowerCase() === alte.toLowerCase())
-
-    if (!heroe) {
-        return res.status(404).json(
-            {
-                message: 'Super Hero Not Found'
-            }
-        );
-    }
-
-    res.json(heroe);
-
-});
-
-app.post('/heroe', (req: Request, res: Response) => {
-
-    const { alte, nombre } = req.body;
-    const hero = heroes.find((hero) => hero.alte === alte);
-
-    if (hero) {
-        return res.status(400).json(
-            {
-                message: `The hero ${alte} already exist`
-            }
-        )
-    }
-
-    _id += 1;
-    const newHero = {
-        id: _id,
-        nombre,
-        alte
-    };
-
-    heroes.push(newHero);
-    res.status(201).json(newHero);
-});
-
-app.delete('/heroe/:alte', (req: Request, res: Response) => {
-    const { alte } = req.params;
-    const index = heroes.findIndex(
-        (hero) =>
-            hero.alte.toLowerCase() === alte.toLowerCase());
-
-    if (index < 0) {
-        return res.status(404).json(`The hero ${alte} not found`)
-    }
-
-    const hero = heroes.splice(index, 1);
-
-    res.json(hero);
-});
-
-
-app.put('/heroe/:id', (req: Request, res: Response) => {
-    const { alte, nombre } = req.body;
-    const { id } = req.params;
-
-    const hero = heroes.find((hero) => hero.id === Number.parseInt(id))
-
-    if (!hero) {
-        return res.status(401).json({
-            message: `The hero ${alte} not found`
-        })
-    }
-
-    hero.alte = alte !== undefined ? alte : hero.alte;
-    hero.nombre = nombre !== undefined ? nombre : hero.alte;
-
-    res.json(hero);
-})
-
+app.use('/heroe', heroeRoute);
 
 app.listen(port, () => {
     console.log(`The application is listening on port ${port}!`);
