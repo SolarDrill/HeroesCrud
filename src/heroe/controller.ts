@@ -1,18 +1,21 @@
 import { Request, Response } from "express";
-import { Heroe } from "./interfaces";
+import { Heroe as  HeroeModel } from "./interfaces";
+import { AppDataSource } from "../../datasource";
+import { Heroe } from "../models/heroe.entity";
 
-
-const heroes: Heroe[] = [];
+const heroes: HeroeModel[] = [];
 let _id = 0;
 
 export const getAll = (req: Request, res: Response) => {
-    return res.json(heroes);
+
+    const heroRepository = AppDataSource.getRepository(Heroe);
+    return res.json(heroRepository.find());
 }
 
 export const getByName = (req: Request, res: Response) => {
     const alte = req.params.alte;
 
-    const heroe = heroes.find((hero: Heroe) => hero.alte.toLowerCase() === alte.toLowerCase())
+    const heroe = heroes.find((hero: HeroeModel) => hero.alte.toLowerCase() === alte.toLowerCase())
 
     if (!heroe) {
         return res.status(404).json(

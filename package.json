@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"npx ts-node-dev src/index.ts --watch",
+    "dev": "npx ts-node-dev src/index.ts --watch",
     "build": "npx tsc"
   },
   "keywords": [],
@@ -17,6 +17,9 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mssql": "^7.3.5",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.12"
   }
 }
