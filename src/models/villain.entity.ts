@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export class Heroe {
+export class Villain {
 
     @PrimaryGeneratedColumn()
     id!: number;
@@ -10,6 +10,6 @@ export class Heroe {
     nombre!: string;
 
     @Column()
-    alte!: string;
+    villano!: string;
 
 }
