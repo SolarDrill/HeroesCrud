@@ -2,7 +2,6 @@ Readme
 This is an Express.js web application that contains two controllers, a Hero Controller and a Villain Controller.
 
 The application provides the following functionality for the Hero Controller:
-
 getAll: gets all heroes.
 getByName: gets a hero by name.
 getById: gets a hero by id.
@@ -11,7 +10,6 @@ remove: removes a hero.
 update: updates a hero.
 
 And the following functionality for the Villain Controller:
-
 getAllVillains: gets all villains.
 getVillainByName: gets a villain by name.
 getVillainById: gets a villain by id.
