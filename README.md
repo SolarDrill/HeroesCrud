@@ -1,6 +1,6 @@
 ### Readme
-
-## This is an Express.js web application that contains two controllers, a Hero Controller and a Villain Controller.
+## This is an Express.js web application that contains two controllers, a Hero Controller and a Villain Controller. 
+## This is a basic Backend structure for a web app about Heroes and Villains.
 
 ## The application provides the following functionality for the Hero Controller:
 + getAll: gets all heroes
